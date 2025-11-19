@@ -8,8 +8,7 @@ package main
 import (
 	"fmt"
 	"os"
-
-	// "path"
+"path/filepath"
 
 	"github.com/go-git/go-git/v5"
 	// "stncCms/internal/commons"
@@ -20,6 +19,43 @@ import (
 	// "path"
 	// "path/filepath"
 )
+
+
+func deleteInFolder(){
+	folderPath := "hedef_klasor"
+// Read folder contents
+contents, err := os.ReadDir(folderPath)
+	if err != nil {
+		fmt.Println("Klasör okunamadı:", err)
+		return
+	}
+
+// Delete each item
+	for _, item := range contents {
+		itemPath := filepath.Join(folderPath, item.Name())
+		err := os.RemoveAll(itemPath)
+		if err != nil {
+			fmt.Printf("don t delete: %s, Hata: %v\n", itemPath, err)
+		} else {
+			fmt.Printf("Deleted: %s\n", itemPath)
+		}
+	}
+
+
+}
+
+
+
+func deleteFolder(){
+
+	err := os.RemoveAll("D:/xampp2/yeeeeeee")
+	if err != nil {
+		fmt.Println("File error:", err)
+	} else {
+		fmt.Println("The folder and its contents have been deleted successfully.")
+	}
+}
+
 
 // IsExists return true if path or file exists
 func IsExist(p string) bool {
